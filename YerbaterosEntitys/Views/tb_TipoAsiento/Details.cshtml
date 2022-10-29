@@ -1,0 +1,26 @@
+﻿@model YerbaterosEntitys.Models.tb_TipoAsiento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_TipoAsiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_ASiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_ASiento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cod_Tipo_Asiento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

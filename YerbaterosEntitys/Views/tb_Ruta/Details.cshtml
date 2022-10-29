@@ -1,0 +1,58 @@
+﻿@model YerbaterosEntitys.Models.tb_Ruta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_Ruta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias_Ruta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alias_Ruta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tiempo_Promedio_Ruta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tiempo_Promedio_Ruta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistanciaKm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistanciaKm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_TerminalTerrestre.Nombre_Terminal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_TerminalTerrestre.Nombre_Terminal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_TerminalTerrestre1.Nombre_Terminal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_TerminalTerrestre1.Nombre_Terminal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cod_Ruta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

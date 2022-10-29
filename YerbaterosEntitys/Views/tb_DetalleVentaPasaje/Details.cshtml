@@ -1,0 +1,82 @@
+﻿@model YerbaterosEntitys.Models.tb_DetalleVentaPasaje
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_DetalleVentaPasaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo_Ticket)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo_Ticket)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sub_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sub_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Asiento.Alias_Asiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Asiento.Alias_Asiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Cliente.Nombres_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Cliente.Nombres_Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_VentaPasaje.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_VentaPasaje.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Viaje.Cod_Viaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Viaje.Cod_Viaje)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Venta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

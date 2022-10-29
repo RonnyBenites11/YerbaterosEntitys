@@ -1,0 +1,34 @@
+﻿@model YerbaterosEntitys.Models.tb_Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseña_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contraseña_Usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cod_Usuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

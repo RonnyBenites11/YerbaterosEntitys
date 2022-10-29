@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e82dc969fca4a8798ba4c7275522859" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Asiento" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Bus" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Cliente" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Departamento" Width="1.5" PointX="1.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Ruta" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_TerminalTerrestre" Width="1.5" PointX="1.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_TipoAsiento" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_TipoDoc" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Usuario" Width="1.5" PointX="3.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_VentaPasaje" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_Viaje" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDSW_202202_2Model.tb_DetalleVentaPasaje" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Asient__Cod_B__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Asient__Cod_T__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Detall__Cod_A__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Viaje__Cod_Bu__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Client__Cod_T__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Client__Cod_U__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Detall__CodNr__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Termin__Cod_D__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Ruta__Cod_Ter__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Ruta__Cod_Ter__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Viaje__Cod_Ru__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_VentaP__Cod_U__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Detall__Id_Ve__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDSW_202202_2Model.FK__tb_Detall__Cod_V__7C4F7684" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

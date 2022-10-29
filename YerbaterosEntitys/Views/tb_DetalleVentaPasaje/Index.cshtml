@@ -1,0 +1,75 @@
+﻿@model IEnumerable<YerbaterosEntitys.Models.tb_DetalleVentaPasaje>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo_Ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sub_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_Asiento.Alias_Asiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_Cliente.Nombres_Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_VentaPasaje.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_Viaje.Cod_Viaje)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voucher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo_Ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descuento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sub_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_Asiento.Alias_Asiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_Cliente.Nombres_Cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_VentaPasaje.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_Viaje.Cod_Viaje)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Venta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Venta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Venta })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectoDSW_202202_2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tb_Asiento">
+          <Key>
+            <PropertyRef Name="Cod_Asiento" />
+          </Key>
+          <Property Name="Cod_Asiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alias_Asiento" Type="varchar" MaxLength="20" />
+          <Property Name="Cod_Bus" Type="int" />
+          <Property Name="Cod_Tipo_Asiento" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_Bus">
+          <Key>
+            <PropertyRef Name="Cod_Bus" />
+          </Key>
+          <Property Name="Cod_Bus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Registro" Type="varchar" MaxLength="100" />
+          <Property Name="Cantidad_Asientos" Type="int" />
+          <Property Name="Marca" Type="varchar" MaxLength="100" />
+          <Property Name="Modelo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_Cliente">
+          <Key>
+            <PropertyRef Name="CodNro_Cliente" />
+          </Key>
+          <Property Name="CodNro_Cliente" Type="int" Nullable="false" />
+          <Property Name="Cod_TipoDoc" Type="int" />
+          <Property Name="Nombres_Cliente" Type="varchar" MaxLength="30" />
+          <Property Name="Apellidos_Cliente" Type="varchar" MaxLength="30" />
+          <Property Name="Cod_Usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_Departamento">
+          <Key>
+            <PropertyRef Name="Cod_Departamento" />
+          </Key>
+          <Property Name="Cod_Departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Departamento" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ProyectoDSW_202202_2.dbo.tb_DetalleVentaPasaje' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="tb_DetalleVentaPasaje">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cod_Viaje" Type="int" />
+          <Property Name="CodNro_Cliente" Type="int" />
+          <Property Name="Cod_Asiento" Type="int" />
+          <Property Name="Voucher" Type="varchar" MaxLength="20" />
+          <Property Name="Costo_Ticket" Type="float" />
+          <Property Name="Descuento" Type="float" />
+          <Property Name="Sub_total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tb_Ruta">
+          <Key>
+            <PropertyRef Name="Cod_Ruta" />
+          </Key>
+          <Property Name="Cod_Ruta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alias_Ruta" Type="varchar" MaxLength="100" />
+          <Property Name="Tiempo_Promedio_Ruta" Type="bigint" />
+          <Property Name="Cod_Terminal_Origen" Type="int" />
+          <Property Name="Cod_Terminal_Destino" Type="int" />
+          <Property Name="DistanciaKm" Type="float" />
+        </EntityType>
+        <EntityType Name="tb_TerminalTerrestre">
+          <Key>
+            <PropertyRef Name="Cod_Terminal" />
+          </Key>
+          <Property Name="Cod_Terminal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Terminal" Type="varchar" MaxLength="100" />
+          <Property Name="Cod_Departamento" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_TipoAsiento">
+          <Key>
+            <PropertyRef Name="Cod_Tipo_Asiento" />
+          </Key>
+          <Property Name="Cod_Tipo_Asiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_ASiento" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_TipoDoc">
+          <Key>
+            <PropertyRef Name="Cod_TipoDoc" />
+          </Key>
+          <Property Name="Cod_TipoDoc" Type="int" Nullable="false" />
+          <Property Name="Descripcion_TipoDoc" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_Usuario">
+          <Key>
+            <PropertyRef Name="Cod_Usuario" />
+          </Key>
+          <Property Name="Cod_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo_Usuario" Type="varchar" MaxLength="30" />
+          <Property Name="Contraseña_Usuario" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="tb_VentaPasaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cod_Usuario" Type="int" />
+          <Property Name="Fecha_Venta" Type="date" />
+          <Property Name="Monto_Total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tb_Viaje">
+          <Key>
+            <PropertyRef Name="Cod_Viaje" />
+          </Key>
+          <Property Name="Cod_Viaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Hora_Partida" Type="date" />
+          <Property Name="Fecha_Hora_Llegada" Type="date" />
+          <Property Name="Cod_Ruta" Type="int" />
+          <Property Name="Cod_Bus" Type="int" />
+        </EntityType>
+        <Association Name="FK__tb_Asient__Cod_B__71D1E811">
+          <End Role="tb_Bus" Type="Self.tb_Bus" Multiplicity="0..1" />
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Bus">
+              <PropertyRef Name="Cod_Bus" />
+            </Principal>
+            <Dependent Role="tb_Asiento">
+              <PropertyRef Name="Cod_Bus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Asient__Cod_T__72C60C4A">
+          <End Role="tb_TipoAsiento" Type="Self.tb_TipoAsiento" Multiplicity="0..1" />
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TipoAsiento">
+              <PropertyRef Name="Cod_Tipo_Asiento" />
+            </Principal>
+            <Dependent Role="tb_Asiento">
+              <PropertyRef Name="Cod_Tipo_Asiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Client__Cod_T__66603565">
+          <End Role="tb_TipoDoc" Type="Self.tb_TipoDoc" Multiplicity="0..1" />
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TipoDoc">
+              <PropertyRef Name="Cod_TipoDoc" />
+            </Principal>
+            <Dependent Role="tb_Cliente">
+              <PropertyRef Name="Cod_TipoDoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Client__Cod_U__6754599E">
+          <End Role="tb_Usuario" Type="Self.tb_Usuario" Multiplicity="0..1" />
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Usuario">
+              <PropertyRef Name="Cod_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Cliente">
+              <PropertyRef Name="Cod_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Cod_A__7E37BEF6">
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Asiento">
+              <PropertyRef Name="Cod_Asiento" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Cod_Asiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Cod_V__7C4F7684">
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Viaje">
+              <PropertyRef Name="Cod_Viaje" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Cod_Viaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__CodNr__7D439ABD">
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Cliente">
+              <PropertyRef Name="CodNro_Cliente" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="CodNro_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Id_Ve__7B5B524B">
+          <End Role="tb_VentaPasaje" Type="Self.tb_VentaPasaje" Multiplicity="1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_VentaPasaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Ruta__Cod_Ter__6A30C649">
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="0..1" />
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Terminal" />
+            </Principal>
+            <Dependent Role="tb_Ruta">
+              <PropertyRef Name="Cod_Terminal_Origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Ruta__Cod_Ter__6B24EA82">
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="0..1" />
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Terminal" />
+            </Principal>
+            <Dependent Role="tb_Ruta">
+              <PropertyRef Name="Cod_Terminal_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Termin__Cod_D__5FB337D6">
+          <End Role="tb_Departamento" Type="Self.tb_Departamento" Multiplicity="0..1" />
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Departamento">
+              <PropertyRef Name="Cod_Departamento" />
+            </Principal>
+            <Dependent Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_VentaP__Cod_U__797309D9">
+          <End Role="tb_Usuario" Type="Self.tb_Usuario" Multiplicity="0..1" />
+          <End Role="tb_VentaPasaje" Type="Self.tb_VentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Usuario">
+              <PropertyRef Name="Cod_Usuario" />
+            </Principal>
+            <Dependent Role="tb_VentaPasaje">
+              <PropertyRef Name="Cod_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Viaje__Cod_Bu__76969D2E">
+          <End Role="tb_Bus" Type="Self.tb_Bus" Multiplicity="0..1" />
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Bus">
+              <PropertyRef Name="Cod_Bus" />
+            </Principal>
+            <Dependent Role="tb_Viaje">
+              <PropertyRef Name="Cod_Bus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Viaje__Cod_Ru__75A278F5">
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="0..1" />
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Ruta">
+              <PropertyRef Name="Cod_Ruta" />
+            </Principal>
+            <Dependent Role="tb_Viaje">
+              <PropertyRef Name="Cod_Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ProyectoDSW_202202_2ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Asiento" EntityType="Self.tb_Asiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Bus" EntityType="Self.tb_Bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Cliente" EntityType="Self.tb_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Departamento" EntityType="Self.tb_Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Ruta" EntityType="Self.tb_Ruta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_TerminalTerrestre" EntityType="Self.tb_TerminalTerrestre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_TipoAsiento" EntityType="Self.tb_TipoAsiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_TipoDoc" EntityType="Self.tb_TipoDoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Usuario" EntityType="Self.tb_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_VentaPasaje" EntityType="Self.tb_VentaPasaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Viaje" EntityType="Self.tb_Viaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DetalleVentaPasaje" EntityType="Self.tb_DetalleVentaPasaje" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_DetalleVentaPasaje].[Id_Venta] AS [Id_Venta], 
+    [tb_DetalleVentaPasaje].[Cod_Viaje] AS [Cod_Viaje], 
+    [tb_DetalleVentaPasaje].[CodNro_Cliente] AS [CodNro_Cliente], 
+    [tb_DetalleVentaPasaje].[Cod_Asiento] AS [Cod_Asiento], 
+    [tb_DetalleVentaPasaje].[Voucher] AS [Voucher], 
+    [tb_DetalleVentaPasaje].[Costo_Ticket] AS [Costo_Ticket], 
+    [tb_DetalleVentaPasaje].[Descuento] AS [Descuento], 
+    [tb_DetalleVentaPasaje].[Sub_total] AS [Sub_total]
+    FROM [dbo].[tb_DetalleVentaPasaje] AS [tb_DetalleVentaPasaje]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tb_Asient__Cod_B__71D1E811" Association="Self.FK__tb_Asient__Cod_B__71D1E811">
+            <End Role="tb_Bus" EntitySet="tb_Bus" />
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Asient__Cod_T__72C60C4A" Association="Self.FK__tb_Asient__Cod_T__72C60C4A">
+            <End Role="tb_TipoAsiento" EntitySet="tb_TipoAsiento" />
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Client__Cod_T__66603565" Association="Self.FK__tb_Client__Cod_T__66603565">
+            <End Role="tb_TipoDoc" EntitySet="tb_TipoDoc" />
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Client__Cod_U__6754599E" Association="Self.FK__tb_Client__Cod_U__6754599E">
+            <End Role="tb_Usuario" EntitySet="tb_Usuario" />
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Cod_A__7E37BEF6" Association="Self.FK__tb_Detall__Cod_A__7E37BEF6">
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Cod_V__7C4F7684" Association="Self.FK__tb_Detall__Cod_V__7C4F7684">
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__CodNr__7D439ABD" Association="Self.FK__tb_Detall__CodNr__7D439ABD">
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Id_Ve__7B5B524B" Association="Self.FK__tb_Detall__Id_Ve__7B5B524B">
+            <End Role="tb_VentaPasaje" EntitySet="tb_VentaPasaje" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Ruta__Cod_Ter__6A30C649" Association="Self.FK__tb_Ruta__Cod_Ter__6A30C649">
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Ruta__Cod_Ter__6B24EA82" Association="Self.FK__tb_Ruta__Cod_Ter__6B24EA82">
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Termin__Cod_D__5FB337D6" Association="Self.FK__tb_Termin__Cod_D__5FB337D6">
+            <End Role="tb_Departamento" EntitySet="tb_Departamento" />
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_VentaP__Cod_U__797309D9" Association="Self.FK__tb_VentaP__Cod_U__797309D9">
+            <End Role="tb_Usuario" EntitySet="tb_Usuario" />
+            <End Role="tb_VentaPasaje" EntitySet="tb_VentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Viaje__Cod_Bu__76969D2E" Association="Self.FK__tb_Viaje__Cod_Bu__76969D2E">
+            <End Role="tb_Bus" EntitySet="tb_Bus" />
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Viaje__Cod_Ru__75A278F5" Association="Self.FK__tb_Viaje__Cod_Ru__75A278F5">
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoDSW_202202_2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tb_Asiento">
+          <Key>
+            <PropertyRef Name="Cod_Asiento" />
+          </Key>
+          <Property Name="Cod_Asiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alias_Asiento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Cod_Bus" Type="Int32" />
+          <Property Name="Cod_Tipo_Asiento" Type="Int32" />
+          <NavigationProperty Name="tb_Bus" Relationship="Self.FK__tb_Asient__Cod_B__71D1E811" FromRole="tb_Asiento" ToRole="tb_Bus" />
+          <NavigationProperty Name="tb_TipoAsiento" Relationship="Self.FK__tb_Asient__Cod_T__72C60C4A" FromRole="tb_Asiento" ToRole="tb_TipoAsiento" />
+          <NavigationProperty Name="tb_DetalleVentaPasaje" Relationship="Self.FK__tb_Detall__Cod_A__7E37BEF6" FromRole="tb_Asiento" ToRole="tb_DetalleVentaPasaje" />
+        </EntityType>
+        <EntityType Name="tb_Bus">
+          <Key>
+            <PropertyRef Name="Cod_Bus" />
+          </Key>
+          <Property Name="Cod_Bus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Registro" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad_Asientos" Type="Int32" />
+          <Property Name="Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_Asiento" Relationship="Self.FK__tb_Asient__Cod_B__71D1E811" FromRole="tb_Bus" ToRole="tb_Asiento" />
+          <NavigationProperty Name="tb_Viaje" Relationship="Self.FK__tb_Viaje__Cod_Bu__76969D2E" FromRole="tb_Bus" ToRole="tb_Viaje" />
+        </EntityType>
+        <EntityType Name="tb_Cliente">
+          <Key>
+            <PropertyRef Name="CodNro_Cliente" />
+          </Key>
+          <Property Name="CodNro_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Cod_TipoDoc" Type="Int32" />
+          <Property Name="Nombres_Cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos_Cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Cod_Usuario" Type="Int32" />
+          <NavigationProperty Name="tb_TipoDoc" Relationship="Self.FK__tb_Client__Cod_T__66603565" FromRole="tb_Cliente" ToRole="tb_TipoDoc" />
+          <NavigationProperty Name="tb_Usuario" Relationship="Self.FK__tb_Client__Cod_U__6754599E" FromRole="tb_Cliente" ToRole="tb_Usuario" />
+          <NavigationProperty Name="tb_DetalleVentaPasaje" Relationship="Self.FK__tb_Detall__CodNr__7D439ABD" FromRole="tb_Cliente" ToRole="tb_DetalleVentaPasaje" />
+        </EntityType>
+        <EntityType Name="tb_Departamento">
+          <Key>
+            <PropertyRef Name="Cod_Departamento" />
+          </Key>
+          <Property Name="Cod_Departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_TerminalTerrestre" Relationship="Self.FK__tb_Termin__Cod_D__5FB337D6" FromRole="tb_Departamento" ToRole="tb_TerminalTerrestre" />
+        </EntityType>
+        <EntityType Name="tb_Ruta">
+          <Key>
+            <PropertyRef Name="Cod_Ruta" />
+          </Key>
+          <Property Name="Cod_Ruta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alias_Ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tiempo_Promedio_Ruta" Type="Int64" />
+          <Property Name="Cod_Terminal_Origen" Type="Int32" />
+          <Property Name="Cod_Terminal_Destino" Type="Int32" />
+          <Property Name="DistanciaKm" Type="Double" />
+          <NavigationProperty Name="tb_TerminalTerrestre" Relationship="Self.FK__tb_Ruta__Cod_Ter__6A30C649" FromRole="tb_Ruta" ToRole="tb_TerminalTerrestre" />
+          <NavigationProperty Name="tb_TerminalTerrestre1" Relationship="Self.FK__tb_Ruta__Cod_Ter__6B24EA82" FromRole="tb_Ruta" ToRole="tb_TerminalTerrestre" />
+          <NavigationProperty Name="tb_Viaje" Relationship="Self.FK__tb_Viaje__Cod_Ru__75A278F5" FromRole="tb_Ruta" ToRole="tb_Viaje" />
+        </EntityType>
+        <EntityType Name="tb_TerminalTerrestre">
+          <Key>
+            <PropertyRef Name="Cod_Terminal" />
+          </Key>
+          <Property Name="Cod_Terminal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Terminal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cod_Departamento" Type="Int32" />
+          <NavigationProperty Name="tb_Departamento" Relationship="Self.FK__tb_Termin__Cod_D__5FB337D6" FromRole="tb_TerminalTerrestre" ToRole="tb_Departamento" />
+          <NavigationProperty Name="tb_Ruta" Relationship="Self.FK__tb_Ruta__Cod_Ter__6A30C649" FromRole="tb_TerminalTerrestre" ToRole="tb_Ruta" />
+          <NavigationProperty Name="tb_Ruta1" Relationship="Self.FK__tb_Ruta__Cod_Ter__6B24EA82" FromRole="tb_TerminalTerrestre" ToRole="tb_Ruta" />
+        </EntityType>
+        <EntityType Name="tb_TipoAsiento">
+          <Key>
+            <PropertyRef Name="Cod_Tipo_Asiento" />
+          </Key>
+          <Property Name="Cod_Tipo_Asiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_ASiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_Asiento" Relationship="Self.FK__tb_Asient__Cod_T__72C60C4A" FromRole="tb_TipoAsiento" ToRole="tb_Asiento" />
+        </EntityType>
+        <EntityType Name="tb_TipoDoc">
+          <Key>
+            <PropertyRef Name="Cod_TipoDoc" />
+          </Key>
+          <Property Name="Cod_TipoDoc" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion_TipoDoc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_Cliente" Relationship="Self.FK__tb_Client__Cod_T__66603565" FromRole="tb_TipoDoc" ToRole="tb_Cliente" />
+        </EntityType>
+        <EntityType Name="tb_Usuario">
+          <Key>
+            <PropertyRef Name="Cod_Usuario" />
+          </Key>
+          <Property Name="Cod_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo_Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña_Usuario" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_Cliente" Relationship="Self.FK__tb_Client__Cod_U__6754599E" FromRole="tb_Usuario" ToRole="tb_Cliente" />
+          <NavigationProperty Name="tb_VentaPasaje" Relationship="Self.FK__tb_VentaP__Cod_U__797309D9" FromRole="tb_Usuario" ToRole="tb_VentaPasaje" />
+        </EntityType>
+        <EntityType Name="tb_VentaPasaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cod_Usuario" Type="Int32" />
+          <Property Name="Fecha_Venta" Type="DateTime" Precision="0" />
+          <Property Name="Monto_Total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tb_Usuario" Relationship="Self.FK__tb_VentaP__Cod_U__797309D9" FromRole="tb_VentaPasaje" ToRole="tb_Usuario" />
+          <NavigationProperty Name="tb_DetalleVentaPasaje" Relationship="Self.FK__tb_Detall__Id_Ve__7B5B524B" FromRole="tb_VentaPasaje" ToRole="tb_DetalleVentaPasaje" />
+        </EntityType>
+        <EntityType Name="tb_Viaje">
+          <Key>
+            <PropertyRef Name="Cod_Viaje" />
+          </Key>
+          <Property Name="Cod_Viaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Hora_Partida" Type="DateTime" Precision="0" />
+          <Property Name="Fecha_Hora_Llegada" Type="DateTime" Precision="0" />
+          <Property Name="Cod_Ruta" Type="Int32" />
+          <Property Name="Cod_Bus" Type="Int32" />
+          <NavigationProperty Name="tb_Bus" Relationship="Self.FK__tb_Viaje__Cod_Bu__76969D2E" FromRole="tb_Viaje" ToRole="tb_Bus" />
+          <NavigationProperty Name="tb_Ruta" Relationship="Self.FK__tb_Viaje__Cod_Ru__75A278F5" FromRole="tb_Viaje" ToRole="tb_Ruta" />
+          <NavigationProperty Name="tb_DetalleVentaPasaje" Relationship="Self.FK__tb_Detall__Cod_V__7C4F7684" FromRole="tb_Viaje" ToRole="tb_DetalleVentaPasaje" />
+        </EntityType>
+        <EntityType Name="tb_DetalleVentaPasaje">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cod_Viaje" Type="Int32" />
+          <Property Name="CodNro_Cliente" Type="Int32" />
+          <Property Name="Cod_Asiento" Type="Int32" />
+          <Property Name="Voucher" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Costo_Ticket" Type="Double" />
+          <Property Name="Descuento" Type="Double" />
+          <Property Name="Sub_total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tb_Asiento" Relationship="Self.FK__tb_Detall__Cod_A__7E37BEF6" FromRole="tb_DetalleVentaPasaje" ToRole="tb_Asiento" />
+          <NavigationProperty Name="tb_Cliente" Relationship="Self.FK__tb_Detall__CodNr__7D439ABD" FromRole="tb_DetalleVentaPasaje" ToRole="tb_Cliente" />
+          <NavigationProperty Name="tb_VentaPasaje" Relationship="Self.FK__tb_Detall__Id_Ve__7B5B524B" FromRole="tb_DetalleVentaPasaje" ToRole="tb_VentaPasaje" />
+          <NavigationProperty Name="tb_Viaje" Relationship="Self.FK__tb_Detall__Cod_V__7C4F7684" FromRole="tb_DetalleVentaPasaje" ToRole="tb_Viaje" />
+        </EntityType>
+        <Association Name="FK__tb_Asient__Cod_B__71D1E811">
+          <End Role="tb_Bus" Type="Self.tb_Bus" Multiplicity="0..1" />
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Bus">
+              <PropertyRef Name="Cod_Bus" />
+            </Principal>
+            <Dependent Role="tb_Asiento">
+              <PropertyRef Name="Cod_Bus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Asient__Cod_T__72C60C4A">
+          <End Role="tb_TipoAsiento" Type="Self.tb_TipoAsiento" Multiplicity="0..1" />
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TipoAsiento">
+              <PropertyRef Name="Cod_Tipo_Asiento" />
+            </Principal>
+            <Dependent Role="tb_Asiento">
+              <PropertyRef Name="Cod_Tipo_Asiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Cod_A__7E37BEF6">
+          <End Role="tb_Asiento" Type="Self.tb_Asiento" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Asiento">
+              <PropertyRef Name="Cod_Asiento" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Cod_Asiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Viaje__Cod_Bu__76969D2E">
+          <End Role="tb_Bus" Type="Self.tb_Bus" Multiplicity="0..1" />
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Bus">
+              <PropertyRef Name="Cod_Bus" />
+            </Principal>
+            <Dependent Role="tb_Viaje">
+              <PropertyRef Name="Cod_Bus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Client__Cod_T__66603565">
+          <End Role="tb_TipoDoc" Type="Self.tb_TipoDoc" Multiplicity="0..1" />
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TipoDoc">
+              <PropertyRef Name="Cod_TipoDoc" />
+            </Principal>
+            <Dependent Role="tb_Cliente">
+              <PropertyRef Name="Cod_TipoDoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Client__Cod_U__6754599E">
+          <End Role="tb_Usuario" Type="Self.tb_Usuario" Multiplicity="0..1" />
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Usuario">
+              <PropertyRef Name="Cod_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Cliente">
+              <PropertyRef Name="Cod_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__CodNr__7D439ABD">
+          <End Role="tb_Cliente" Type="Self.tb_Cliente" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Cliente">
+              <PropertyRef Name="CodNro_Cliente" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="CodNro_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Termin__Cod_D__5FB337D6">
+          <End Role="tb_Departamento" Type="Self.tb_Departamento" Multiplicity="0..1" />
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Departamento">
+              <PropertyRef Name="Cod_Departamento" />
+            </Principal>
+            <Dependent Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Ruta__Cod_Ter__6A30C649">
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="0..1" />
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Terminal" />
+            </Principal>
+            <Dependent Role="tb_Ruta">
+              <PropertyRef Name="Cod_Terminal_Origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Ruta__Cod_Ter__6B24EA82">
+          <End Role="tb_TerminalTerrestre" Type="Self.tb_TerminalTerrestre" Multiplicity="0..1" />
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TerminalTerrestre">
+              <PropertyRef Name="Cod_Terminal" />
+            </Principal>
+            <Dependent Role="tb_Ruta">
+              <PropertyRef Name="Cod_Terminal_Destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Viaje__Cod_Ru__75A278F5">
+          <End Role="tb_Ruta" Type="Self.tb_Ruta" Multiplicity="0..1" />
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Ruta">
+              <PropertyRef Name="Cod_Ruta" />
+            </Principal>
+            <Dependent Role="tb_Viaje">
+              <PropertyRef Name="Cod_Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_VentaP__Cod_U__797309D9">
+          <End Role="tb_Usuario" Type="Self.tb_Usuario" Multiplicity="0..1" />
+          <End Role="tb_VentaPasaje" Type="Self.tb_VentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Usuario">
+              <PropertyRef Name="Cod_Usuario" />
+            </Principal>
+            <Dependent Role="tb_VentaPasaje">
+              <PropertyRef Name="Cod_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Id_Ve__7B5B524B">
+          <End Role="tb_VentaPasaje" Type="Self.tb_VentaPasaje" Multiplicity="1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_VentaPasaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_Detall__Cod_V__7C4F7684">
+          <End Role="tb_Viaje" Type="Self.tb_Viaje" Multiplicity="0..1" />
+          <End Role="tb_DetalleVentaPasaje" Type="Self.tb_DetalleVentaPasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Viaje">
+              <PropertyRef Name="Cod_Viaje" />
+            </Principal>
+            <Dependent Role="tb_DetalleVentaPasaje">
+              <PropertyRef Name="Cod_Viaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoDSW_202202_2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tb_Asiento" EntityType="Self.tb_Asiento" />
+          <EntitySet Name="tb_Bus" EntityType="Self.tb_Bus" />
+          <EntitySet Name="tb_Cliente" EntityType="Self.tb_Cliente" />
+          <EntitySet Name="tb_Departamento" EntityType="Self.tb_Departamento" />
+          <EntitySet Name="tb_Ruta" EntityType="Self.tb_Ruta" />
+          <EntitySet Name="tb_TerminalTerrestre" EntityType="Self.tb_TerminalTerrestre" />
+          <EntitySet Name="tb_TipoAsiento" EntityType="Self.tb_TipoAsiento" />
+          <EntitySet Name="tb_TipoDoc" EntityType="Self.tb_TipoDoc" />
+          <EntitySet Name="tb_Usuario" EntityType="Self.tb_Usuario" />
+          <EntitySet Name="tb_VentaPasaje" EntityType="Self.tb_VentaPasaje" />
+          <EntitySet Name="tb_Viaje" EntityType="Self.tb_Viaje" />
+          <EntitySet Name="tb_DetalleVentaPasaje" EntityType="Self.tb_DetalleVentaPasaje" />
+          <AssociationSet Name="FK__tb_Asient__Cod_B__71D1E811" Association="Self.FK__tb_Asient__Cod_B__71D1E811">
+            <End Role="tb_Bus" EntitySet="tb_Bus" />
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Asient__Cod_T__72C60C4A" Association="Self.FK__tb_Asient__Cod_T__72C60C4A">
+            <End Role="tb_TipoAsiento" EntitySet="tb_TipoAsiento" />
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Cod_A__7E37BEF6" Association="Self.FK__tb_Detall__Cod_A__7E37BEF6">
+            <End Role="tb_Asiento" EntitySet="tb_Asiento" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Viaje__Cod_Bu__76969D2E" Association="Self.FK__tb_Viaje__Cod_Bu__76969D2E">
+            <End Role="tb_Bus" EntitySet="tb_Bus" />
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Client__Cod_T__66603565" Association="Self.FK__tb_Client__Cod_T__66603565">
+            <End Role="tb_TipoDoc" EntitySet="tb_TipoDoc" />
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Client__Cod_U__6754599E" Association="Self.FK__tb_Client__Cod_U__6754599E">
+            <End Role="tb_Usuario" EntitySet="tb_Usuario" />
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__CodNr__7D439ABD" Association="Self.FK__tb_Detall__CodNr__7D439ABD">
+            <End Role="tb_Cliente" EntitySet="tb_Cliente" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Termin__Cod_D__5FB337D6" Association="Self.FK__tb_Termin__Cod_D__5FB337D6">
+            <End Role="tb_Departamento" EntitySet="tb_Departamento" />
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Ruta__Cod_Ter__6A30C649" Association="Self.FK__tb_Ruta__Cod_Ter__6A30C649">
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Ruta__Cod_Ter__6B24EA82" Association="Self.FK__tb_Ruta__Cod_Ter__6B24EA82">
+            <End Role="tb_TerminalTerrestre" EntitySet="tb_TerminalTerrestre" />
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Viaje__Cod_Ru__75A278F5" Association="Self.FK__tb_Viaje__Cod_Ru__75A278F5">
+            <End Role="tb_Ruta" EntitySet="tb_Ruta" />
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_VentaP__Cod_U__797309D9" Association="Self.FK__tb_VentaP__Cod_U__797309D9">
+            <End Role="tb_Usuario" EntitySet="tb_Usuario" />
+            <End Role="tb_VentaPasaje" EntitySet="tb_VentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Id_Ve__7B5B524B" Association="Self.FK__tb_Detall__Id_Ve__7B5B524B">
+            <End Role="tb_VentaPasaje" EntitySet="tb_VentaPasaje" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_Detall__Cod_V__7C4F7684" Association="Self.FK__tb_Detall__Cod_V__7C4F7684">
+            <End Role="tb_Viaje" EntitySet="tb_Viaje" />
+            <End Role="tb_DetalleVentaPasaje" EntitySet="tb_DetalleVentaPasaje" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProyectoDSW_202202_2Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProyectoDSW_202202_2Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="usp_listarClientes" ReturnType="Collection(ProyectoDSW_202202_2Model.usp_listarClientes_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_listarClientes_Result">
+          <Property Type="Int32" Name="CodNro_Cliente" Nullable="false" />
+          <Property Type="String" Name="Descripcion_TipoDoc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombres_Cliente" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Apellidos_Cliente" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Correo_Usuario" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoDSW_202202_2ModelStoreContainer" CdmEntityContainer="ProyectoDSW_202202_2Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Asiento">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Asiento">
+              <MappingFragment StoreEntitySet="tb_Asiento">
+                <ScalarProperty Name="Cod_Asiento" ColumnName="Cod_Asiento" />
+                <ScalarProperty Name="Alias_Asiento" ColumnName="Alias_Asiento" />
+                <ScalarProperty Name="Cod_Bus" ColumnName="Cod_Bus" />
+                <ScalarProperty Name="Cod_Tipo_Asiento" ColumnName="Cod_Tipo_Asiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Bus">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Bus">
+              <MappingFragment StoreEntitySet="tb_Bus">
+                <ScalarProperty Name="Cod_Bus" ColumnName="Cod_Bus" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="Cantidad_Asientos" ColumnName="Cantidad_Asientos" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Cliente">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Cliente">
+              <MappingFragment StoreEntitySet="tb_Cliente">
+                <ScalarProperty Name="CodNro_Cliente" ColumnName="CodNro_Cliente" />
+                <ScalarProperty Name="Cod_TipoDoc" ColumnName="Cod_TipoDoc" />
+                <ScalarProperty Name="Nombres_Cliente" ColumnName="Nombres_Cliente" />
+                <ScalarProperty Name="Apellidos_Cliente" ColumnName="Apellidos_Cliente" />
+                <ScalarProperty Name="Cod_Usuario" ColumnName="Cod_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Departamento">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Departamento">
+              <MappingFragment StoreEntitySet="tb_Departamento">
+                <ScalarProperty Name="Cod_Departamento" ColumnName="Cod_Departamento" />
+                <ScalarProperty Name="Nombre_Departamento" ColumnName="Nombre_Departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Ruta">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Ruta">
+              <MappingFragment StoreEntitySet="tb_Ruta">
+                <ScalarProperty Name="Cod_Ruta" ColumnName="Cod_Ruta" />
+                <ScalarProperty Name="Alias_Ruta" ColumnName="Alias_Ruta" />
+                <ScalarProperty Name="Tiempo_Promedio_Ruta" ColumnName="Tiempo_Promedio_Ruta" />
+                <ScalarProperty Name="Cod_Terminal_Origen" ColumnName="Cod_Terminal_Origen" />
+                <ScalarProperty Name="Cod_Terminal_Destino" ColumnName="Cod_Terminal_Destino" />
+                <ScalarProperty Name="DistanciaKm" ColumnName="DistanciaKm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_TerminalTerrestre">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_TerminalTerrestre">
+              <MappingFragment StoreEntitySet="tb_TerminalTerrestre">
+                <ScalarProperty Name="Cod_Terminal" ColumnName="Cod_Terminal" />
+                <ScalarProperty Name="Nombre_Terminal" ColumnName="Nombre_Terminal" />
+                <ScalarProperty Name="Cod_Departamento" ColumnName="Cod_Departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_TipoAsiento">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_TipoAsiento">
+              <MappingFragment StoreEntitySet="tb_TipoAsiento">
+                <ScalarProperty Name="Cod_Tipo_Asiento" ColumnName="Cod_Tipo_Asiento" />
+                <ScalarProperty Name="Tipo_ASiento" ColumnName="Tipo_ASiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_TipoDoc">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_TipoDoc">
+              <MappingFragment StoreEntitySet="tb_TipoDoc">
+                <ScalarProperty Name="Cod_TipoDoc" ColumnName="Cod_TipoDoc" />
+                <ScalarProperty Name="Descripcion_TipoDoc" ColumnName="Descripcion_TipoDoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Usuario">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Usuario">
+              <MappingFragment StoreEntitySet="tb_Usuario">
+                <ScalarProperty Name="Cod_Usuario" ColumnName="Cod_Usuario" />
+                <ScalarProperty Name="Correo_Usuario" ColumnName="Correo_Usuario" />
+                <ScalarProperty Name="Contraseña_Usuario" ColumnName="Contraseña_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_VentaPasaje">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_VentaPasaje">
+              <MappingFragment StoreEntitySet="tb_VentaPasaje">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cod_Usuario" ColumnName="Cod_Usuario" />
+                <ScalarProperty Name="Fecha_Venta" ColumnName="Fecha_Venta" />
+                <ScalarProperty Name="Monto_Total" ColumnName="Monto_Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Viaje">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_Viaje">
+              <MappingFragment StoreEntitySet="tb_Viaje">
+                <ScalarProperty Name="Cod_Viaje" ColumnName="Cod_Viaje" />
+                <ScalarProperty Name="Fecha_Hora_Partida" ColumnName="Fecha_Hora_Partida" />
+                <ScalarProperty Name="Fecha_Hora_Llegada" ColumnName="Fecha_Hora_Llegada" />
+                <ScalarProperty Name="Cod_Ruta" ColumnName="Cod_Ruta" />
+                <ScalarProperty Name="Cod_Bus" ColumnName="Cod_Bus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DetalleVentaPasaje">
+            <EntityTypeMapping TypeName="ProyectoDSW_202202_2Model.tb_DetalleVentaPasaje">
+              <MappingFragment StoreEntitySet="tb_DetalleVentaPasaje">
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Cod_Viaje" ColumnName="Cod_Viaje" />
+                <ScalarProperty Name="CodNro_Cliente" ColumnName="CodNro_Cliente" />
+                <ScalarProperty Name="Cod_Asiento" ColumnName="Cod_Asiento" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+                <ScalarProperty Name="Costo_Ticket" ColumnName="Costo_Ticket" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Sub_total" ColumnName="Sub_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProyectoDSW_202202_2Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProyectoDSW_202202_2Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProyectoDSW_202202_2Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProyectoDSW_202202_2Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoDSW_202202_2Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProyectoDSW_202202_2Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoDSW_202202_2Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProyectoDSW_202202_2Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProyectoDSW_202202_2Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="usp_listarClientes" FunctionName="ProyectoDSW_202202_2Model.Store.usp_listarClientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoDSW_202202_2Model.usp_listarClientes_Result">
+                <ScalarProperty Name="CodNro_Cliente" ColumnName="CodNro_Cliente" />
+                <ScalarProperty Name="Descripcion_TipoDoc" ColumnName="Descripcion_TipoDoc" />
+                <ScalarProperty Name="Nombres_Cliente" ColumnName="Nombres_Cliente" />
+                <ScalarProperty Name="Apellidos_Cliente" ColumnName="Apellidos_Cliente" />
+                <ScalarProperty Name="Correo_Usuario" ColumnName="Correo_Usuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
